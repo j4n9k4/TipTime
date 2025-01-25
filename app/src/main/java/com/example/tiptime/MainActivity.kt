@@ -31,6 +31,7 @@ import com.example.tiptime.ui.theme.TipTimeTheme
 import androidx.compose.ui.unit.dp
 import java.text.NumberFormat
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.annotation.StringRes
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,6 +45,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 @Composable fun EditNumberField(
+    @StringRes label: Int,
     value: String,
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
@@ -55,7 +57,7 @@ class MainActivity : ComponentActivity() {
         value = value,
         onValueChange = onValueChange,
         modifier = modifier,
-        label = { Text(stringResource(R.string.bill_amount)) },
+        label = { Text(stringResource(label)) },
         singleLine = true,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
 
@@ -86,9 +88,16 @@ fun TipTimeLayout()
         )
 
         EditNumberField(
+            label = R.string.bill_amount,
             value = amountInput,
             onValueChange = {amountInput = it},
             modifier = Modifier.padding(bottom = 32.dp).fillMaxSize())
+        EditNumberField(
+            label = R.string.how_was_the_service,
+            value = "",
+            onValueChange ={},
+            modifier = Modifier.padding(bottom = 32.dp).fillMaxSize()
+        )
 
         Text(
             text = stringResource(R.string.tip_amount, tip),
