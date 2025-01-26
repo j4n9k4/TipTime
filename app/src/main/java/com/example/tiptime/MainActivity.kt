@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import java.text.NumberFormat
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.annotation.StringRes
+import androidx.compose.ui.text.input.ImeAction
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,7 +60,10 @@ class MainActivity : ComponentActivity() {
         modifier = modifier,
         label = { Text(stringResource(label)) },
         singleLine = true,
-        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        keyboardOptions = KeyboardOptions.Default.copy(
+            keyboardType = KeyboardType.Number,
+            imeAction = ImeAction.Next
+        ),
 
     )
 }
