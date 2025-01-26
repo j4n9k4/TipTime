@@ -49,6 +49,7 @@ class MainActivity : ComponentActivity() {
     @StringRes label: Int,
     value: String,
     onValueChange: (String) -> Unit,
+    keyboardOptions: KeyboardOptions,
     modifier: Modifier = Modifier,
 
     )
@@ -60,10 +61,8 @@ class MainActivity : ComponentActivity() {
         modifier = modifier,
         label = { Text(stringResource(label)) },
         singleLine = true,
-        keyboardOptions = KeyboardOptions.Default.copy(
-            keyboardType = KeyboardType.Number,
-            imeAction = ImeAction.Next
-        ),
+        keyboardOptions = keyboardOptions
+
 
     )
 }
@@ -97,11 +96,18 @@ fun TipTimeLayout()
             label = R.string.bill_amount,
             value = amountInput,
             onValueChange = {amountInput = it},
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next),
             modifier = Modifier.padding(bottom = 32.dp).fillMaxSize())
+
         EditNumberField(
             label = R.string.how_was_the_service,
             value = tipInput,
             onValueChange ={tipInput = it},
+            keyboardOptions = KeyboardOptions.Default.copy(
+                keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done),
             modifier = Modifier.padding(bottom = 32.dp).fillMaxSize()
         )
 
