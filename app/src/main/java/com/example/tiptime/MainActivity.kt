@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -38,6 +39,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
 import androidx.compose.material3.Switch
+import androidx.compose.material3.Icon
+import androidx.compose.ui.res.painterResource
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +55,7 @@ class MainActivity : ComponentActivity() {
 }
 @Composable fun EditNumberField(
     @StringRes label: Int,
+    @DrawableRes leadingIcon: Int,
     value: String,
     onValueChange: (String) -> Unit,
     keyboardOptions: KeyboardOptions,
@@ -62,6 +66,7 @@ class MainActivity : ComponentActivity() {
 
     TextField(
         value = value,
+        leadingIcon = { Icon(painter = painterResource(leadingIcon), null) },
         onValueChange = onValueChange,
         modifier = modifier,
         label = { Text(stringResource(label)) },
@@ -130,6 +135,7 @@ fun TipTimeLayout()
 
         EditNumberField(
             label = R.string.bill_amount,
+            leadingIcon = R.drawable.amount_icon,
             value = amountInput,
             onValueChange = {amountInput = it},
             keyboardOptions = KeyboardOptions.Default.copy(
@@ -139,6 +145,7 @@ fun TipTimeLayout()
 
         EditNumberField(
             label = R.string.how_was_the_service,
+            leadingIcon = R.drawable.percentage_icon,
             value = tipInput,
             onValueChange ={tipInput = it},
             keyboardOptions = KeyboardOptions.Default.copy(
