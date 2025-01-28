@@ -33,6 +33,7 @@ import androidx.compose.ui.unit.dp
 import java.text.NumberFormat
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.annotation.StringRes
+import androidx.annotation.VisibleForTesting
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -169,8 +170,8 @@ fun TipTimeLayout()
 
     }
 }
-
-private fun calculateTip(
+@VisibleForTesting
+internal fun calculateTip(
     amount: Double,
     tipPercent: Double = 15.0,
     roundUp: Boolean
