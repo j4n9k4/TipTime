@@ -9,7 +9,7 @@ import org.junit.Test
 import java.text.NumberFormat
 
 class TipUITests {
-    val expectedTip = NumberFormat.getCurrencyInstance().format(2)
+    private val expectedTip = NumberFormat.getCurrencyInstance().format(2)
     @get:Rule
     val composeTestRule = createComposeRule()
 
